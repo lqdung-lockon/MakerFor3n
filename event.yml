@@ -1,0 +1,8 @@
+# New hookpoint for version >= 3.0.9
+admin.product.edit.initialize:
+    - [onAdminProductEditInitialize, NORMAL]
+admin.product.edit.complete:
+    - [onAdminProductEditComplete, NORMAL]
+
+Product/detail.twig:
+    - [onRenderProductDetail, NORMAL]

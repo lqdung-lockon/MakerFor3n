@@ -1,0 +1,8 @@
+name: Maker
+event: MakerEvent
+code: Maker
+version: 1.0.0
+orm.path:
+    - /Entity
+service: 
+    - MakerServiceProvider

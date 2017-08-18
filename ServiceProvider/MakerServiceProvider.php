@@ -12,6 +12,7 @@ namespace Plugin\Maker\ServiceProvider;
 
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
+use Plugin\Maker\Event\Maker;
 
 /**
  * Class MakerServiceProvider.
@@ -23,6 +24,12 @@ class MakerServiceProvider implements ServiceProviderInterface
      */
     public function register(Container $app)
     {
+
+        // Maker event
+        $app['eccube.plugin.maker.event.maker'] = function () use ($app) {
+            return new Maker($app);
+        };
+
         $app['eccube.plugin.maker.repository.maker'] = function () use ($app) {
             return $app['orm.em']->getRepository('Plugin\Maker\Entity\Maker');
         };

@@ -9,7 +9,7 @@
  */
 namespace Plugin\Maker\Event;
 
-use Eccube\Application;
+use Pimple\Container;
 
 /**
  * Class AbstractEvent.
@@ -17,7 +17,7 @@ use Eccube\Application;
 class CommonEvent
 {
     /**
-     * @var Application
+     * @var Container
      */
     protected $app;
 
@@ -28,7 +28,7 @@ class CommonEvent
 
     /**
      * AbstractEvent constructor.
-     * @param \Silex\Application $app
+     * @param Container $app
      */
     public function __construct($app)
     {

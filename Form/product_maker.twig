@@ -1,0 +1,7 @@
+{%- extends 'Form/bootstrap_3_horizontal_layout.html.twig' -%}
+
+{%- block _admin_product_product_maker_name -%}
+    {{ form_label(form.maker_name) }}
+    {{ form_widget(form.maker_name) }}
+    {{ form_errors(form.maker_name) }}
+{%- endblock _admin_product_product_maker_name -%}

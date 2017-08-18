@@ -26,6 +26,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Maker extends AbstractEntity
 {
+    protected $discriminator_type = 'maker';
+
     /**
      * @var integer
      *
@@ -222,5 +224,17 @@ class Maker extends AbstractEntity
         $metadata->addConstraint(new UniqueEntity(array(
             'fields' => 'name',
         )));
+    }
+
+    public function getDiscriminatorType()
+    {
+        return $this->discriminator_type;
+    }
+
+    public function setDiscriminatorType($disc)
+    {
+        $this->discriminator_type;
+
+        return $this;
     }
 }

@@ -13,15 +13,12 @@ namespace Plugin\Maker\Controller;
 use Doctrine\Common\Collections\ArrayCollection;
 use Eccube\Application;
 use Eccube\Controller\AbstractController;
-use Eccube\Entity\Plugin;
 use Plugin\Maker\Entity\Maker;
 use Plugin\Maker\Form\Type\MakerType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -40,7 +37,7 @@ class MakerController extends AbstractController
      * @param Application $app
      * @param Request     $request
      * @param int         $id
-     * @return array
+     * @return Mixed
      */
     public function index(Application $app, Request $request, $id = null)
     {
@@ -70,6 +67,11 @@ class MakerController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // You can set discriminator type by manual
+            if ($TargetMaker->getDiscriminatorType()) {
+//                $TargetMaker->setDiscriminatorType();
+            }
+
             $status = $repos->save($TargetMaker);
             if ($status) {
                 $app->addSuccess('admin.plugin.maker.save.complete', 'admin');

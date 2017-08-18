@@ -33,9 +33,6 @@ class MakerServiceProvider implements ServiceProviderInterface
             return $types;
         });
 
-//        $file = __DIR__.'/../Resource/locale/message.'.$app['locale'].'.yml';
-//        $app['translator']->addResource('yaml', $file, $app['locale']);
-
         $app->extend('translator', function ($translator, \Silex\Application $app) {
             $translator->addLoader('yaml', new \Symfony\Component\Translation\Loader\YamlFileLoader());
 
@@ -51,31 +48,26 @@ class MakerServiceProvider implements ServiceProviderInterface
 
             return $translator;
         });
-
-//        dump($app['config']);
-
-//        dump($app['form.types']);
-//        dump($app);
-        $app['config'] =
-        $app->extend('config', function ($config) {
-            dump($config);
-            $addNavi['id'] = 'maker';
-            $addNavi['name'] = 'メーカー管理';
-            $addNavi['url'] = 'admin_plugin_maker_index';
-            $nav = $config['nav'];
-            foreach ($nav as $key => $val) {
-                if ('product' == $val['id']) {
-                    $nav[$key]['child'][] = $addNavi;
-                }
-            }
-            $config['nav'] = $nav;
-
-            return $config;
-        });
+//        $app['config'] =
+//        $app->extend('config', function ($config) {
+//            dump($config);
+//            $addNavi['id'] = 'maker';
+//            $addNavi['name'] = 'メーカー管理';
+//            $addNavi['url'] = 'admin_plugin_maker_index';
+//            $nav = $config['nav'];
+//            foreach ($nav as $key => $val) {
+//                if ('product' == $val['id']) {
+//                    $nav[$key]['child'][] = $addNavi;
+//                }
+//            }
+//            $config['nav'] = $nav;
+//
+//            return $config;
+//        });
     }
 
     /**
-     * @param $app
+     * @param object $app
      */
     public function boot($app)
     {
